@@ -1,0 +1,560 @@
+<head></head>
+<body bgcolor="#add8e6">
+<p>Hello world and welcome to New England!</p>
+<script src="//d3js.org/d3.v3.min.js"></script>
+<script>
+    var vermontName = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .text("Vermont");
+
+    var newHampshireName = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .text("New Hampshire");
+
+    var maineName = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .text("Maine");
+
+    var massachusettsName = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .text("Massachusetts");
+
+    var connecticutName = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .text("Connecticut");
+
+    var rhodeIslandName = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("z-index", "10")
+    .style("visibility", "hidden")
+    .text("Rhode Island");
+
+
+
+    //create New England
+    var svgNewEngland = d3.select("body").append("svg")
+        .attr("width", 1000)
+        .attr("height", 300);
+
+
+    //create Vermont
+    var lineVT = d3.svg.line()
+        .x(function(d) {
+        return d.x;
+      })
+      .y(function(d) {
+        return d.y;
+      });
+    var pointsVT = [{
+        x: 20, y: 130
+      },{
+        x: 80, y: 130
+      },{
+        x: 67, y: 160
+      },{
+        x: 50, y: 230
+      },{
+        x: 22, y: 230
+      }];
+
+        var pointsVTduplicate = new Array(pointsVT.length);
+            for (var i = 0; i < pointsVT.length; i++) {
+                pointsVTduplicate[i] = pointsVT[i];
+            }
+            for (var i = 0; i < pointsVTduplicate.length; i++) {
+                //shift Vermont up
+                pointsVTduplicate[i] = {x: pointsVT[i].x, y: pointsVT[i].y-10};
+            }
+
+    svgNewEngland.append("path")
+      .attr("d", lineVT(pointsVT) + 'Z')
+      .style("fill", "mediumpurple")
+      .style("stroke", "black")
+        .on("mouseover", function(){
+            return vermontName.style("visibility", "visible")
+          .style("font-family", "Verdana");
+        })
+        .on("mousemove", function(){return vermontName.style("top",
+    (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+    .on("mouseout", function(){
+        return vermontName.style("visibility", "hidden");});
+
+
+    //create New Hampshire
+    var lineNH = d3.svg.line()
+        .x(function(d) {
+        return d.x;
+      })
+      .y(function(d) {
+        return d.y;
+      });
+     var pointsNH = [{
+         x: 80, y: 130
+     },{
+         x: 81, y: 126
+     },{
+        //top right
+         x: 98, y: 127
+     },{
+         x: 100, y: 130
+     },{
+         x: 108, y: 210
+     },{
+         //bottom right
+         x: 108, y: 218
+     },{
+         x: 93, y: 230
+     },{
+         x: 50, y: 230
+     },{
+         x: 67, y: 160
+     }];
+
+     svgNewEngland.append("path")
+      .attr("d", lineNH(pointsNH) + 'Z')
+      .style("fill", "salmon")
+      .style("stroke", "black")
+     .on("mouseover", function(){return newHampshireName.style("visibility", "visible")
+         .style("font-family", "Verdana");})
+        .on("mousemove", function(){return newHampshireName.style("top",
+    (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+    .on("mouseout", function(){return newHampshireName.style("visibility", "hidden");});
+
+
+     //create Maine
+    var lineME = d3.svg.line()
+        .x(function(d) {
+        return d.x;
+      })
+      .y(function(d) {
+        return d.y;
+      });
+     var pointsME = [{
+         //southern connection with NH
+         x: 108, y: 210
+     },{
+         x: 125, y: 175
+     },{
+         x: 200, y: 130
+     },{
+         x: 215, y: 125
+     },{
+         x: 200, y: 95
+     },{
+         x: 187, y: 25
+     },{
+         x: 132, y: 23
+     },{
+         x: 122, y: 60
+     },{
+         x: 115, y: 90
+     },{
+         x: 106, y: 110
+     },{
+         x: 98, y: 127
+     }];
+
+     svgNewEngland.append("path")
+      .attr("d", lineME(pointsME) + 'Z')
+      .style("fill", "darkseagreen")
+      .style("stroke", "black")
+    .on("mouseover", function(){return maineName.style("visibility", "visible")
+         .style("font-family", "Verdana");})
+        .on("mousemove", function(){return maineName.style("top",
+    (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+    .on("mouseout", function(){return maineName.style("visibility", "hidden");});
+
+
+    //create Massachusetts
+    var lineMA = d3.svg.line()
+        .x(function(d) {
+        return d.x;
+      })
+      .y(function(d) {
+        return d.y;
+      });
+    var pointsMA = [{
+        //top left
+        x: 22, y: 230
+    },{
+        x: 18, y: 259
+    },{
+        x: 91, y: 259
+    },{
+        x: 92, y: 265
+    },{
+        //corner next to RI
+        x: 102, y: 280
+    },{
+        x: 122, y: 274
+    },{
+        x: 122, y: 283
+    },{
+        x: 144, y: 280
+    },{
+        x: 145, y: 272
+    },{
+        x: 142, y: 260
+    },{
+        x: 140, y: 277
+    },{
+        x: 128, y: 277
+    },{
+        x: 113, y: 247
+    },{
+        x: 111, y: 238
+    },{
+        x: 116, y: 231
+    },{
+        x: 108, y: 218
+    },{
+        x: 93, y: 230
+    }];
+
+    svgNewEngland.append("path")
+      .attr("d", lineMA(pointsMA) + 'Z')
+      .style("fill", "sandybrown")
+      .style("stroke", "black")
+    .on("mouseover", function(){return massachusettsName.style("visibility", "visible")
+         .style("font-family", "Verdana");})
+        .on("mousemove", function(){return massachusettsName.style("top",
+    (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+    .on("mouseout", function(){return massachusettsName.style("visibility", "hidden");});
+
+
+    //create Connecticut
+    var lineCT = d3.svg.line()
+        .x(function(d) {
+        return d.x;
+      })
+      .y(function(d) {
+        return d.y;
+      });
+    var pointsCT = [{
+        //top left
+        x: 18, y: 259
+    },{
+        x: 17, y: 289
+    },{
+        x: 13, y: 291
+    },{
+        x: 14, y: 293
+    },{
+        x: 20, y: 290
+    },{
+        x: 30, y: 287
+    },{
+        x: 65, y: 283
+    },{
+        x: 66, y: 259
+    }];
+
+    svgNewEngland.append("path")
+      .attr("d", lineCT(pointsCT) + 'Z')
+      .style("fill", "darkseagreen")
+      .style("stroke", "black")
+    .on("mouseover", function(){return connecticutName.style("visibility", "visible")
+         .style("font-family", "Verdana");})
+        .on("mousemove", function(){return connecticutName.style("top",
+    (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+    .on("mouseout", function(){return connecticutName.style("visibility", "hidden");});
+
+
+    //create Rhode Island
+    var lineRI = d3.svg.line()
+        .x(function(d) {
+        return d.x;
+      })
+      .y(function(d) {
+        return d.y;
+      });
+    var pointsRI = [{
+        //top left
+        x: 66, y: 259
+    },{
+        x: 65, y: 283
+    },{
+        x: 81, y: 281
+    },{
+        x: 83, y: 270
+    },{
+        x: 85, y: 268
+    },{
+        x: 92, y: 280
+    },{
+        x: 102, y: 280
+    },{
+        x: 92, y: 265
+    },{
+        x: 91, y: 259
+    }];
+
+    svgNewEngland.append("path")
+      .attr("d", lineRI(pointsRI) + 'Z')
+      .style("fill", "gold")
+      .style("stroke", "black")
+    .on("mouseover", function(){return rhodeIslandName.style("visibility", "visible")
+         .style("font-family", "Verdana");})
+        .on("mousemove", function(){return rhodeIslandName.style("top",
+    (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+    .on("mouseout", function(){return rhodeIslandName.style("visibility", "hidden");});
+
+
+    var vermontFacts = d3.select("body").append("svg")
+               .attr("x", 400)
+        .attr("height", 325)
+        .attr("width", 1000);
+
+   vermontFacts.append("circle")
+       .attr("cx", 170)
+        .attr("cy", 170)
+        .attr("r", 140)
+        .style("fill", "mediumpurple");
+
+    vermontFacts.append("text")
+        .attr("dx", 65)
+        .attr("dy", 135)
+        .text("Vermont")
+        .style("font-family", "Verdana");
+
+    vermontFacts.append("text")
+        .attr("dx", 65)
+        .attr("dy", 160)
+        .text("Year of Admission: 1791")
+        .style("font-family", "Verdana");
+
+    vermontFacts.append("text")
+        .attr("dx", 65)
+        .attr("dy", 185)
+        .text("Population: 624,000")
+        .style("font-family", "Verdana");
+
+    vermontFacts.append("text")
+        .attr("dx", 65)
+        .attr("dy", 210)
+        .text("Size: 24,923 sqkm")
+        .style("font-family", "Verdana");
+
+    var newHampshireFacts = d3.select("body").append("svg")
+               .attr("x", 400)
+        .attr("height", 250)
+        .attr("width", 1000);
+
+    newHampshireFacts.append("rect")
+       .attr("x", 20)
+        .attr("y", 20)
+        .attr("width", 300)
+        .attr("height", 200)
+        .style("fill", "salmon");
+
+    newHampshireFacts.append("text")
+        .attr("dx", 45)
+        .attr("dy", 90)
+        .text("New Hampshire")
+        .style("font-family", "Verdana");
+
+    newHampshireFacts.append("text")
+        .attr("dx", 45)
+        .attr("dy", 115)
+        .text("Year of Admission: 1788")
+        .style("font-family", "Verdana");
+
+    newHampshireFacts.append("text")
+        .attr("dx", 45)
+        .attr("dy", 140)
+        .text("Population: 1,343,000")
+        .style("font-family", "Verdana");
+
+    newHampshireFacts.append("text")
+        .attr("dx", 45)
+        .attr("dy", 165)
+        .text("Size: 24,214 sqkm")
+        .style("font-family", "Verdana");
+
+    var maineFacts = d3.select("body").append("svg")
+               .attr("x", 400)
+        .attr("height", 250)
+        .attr("width", 1000);
+
+    var maineHexagonPoints = [{
+           "x": 120, "y": 10
+       },{
+           "x": 240, "y": 10
+       },{
+           "x": 340, "y": 120
+       },{
+           "x": 240, "y": 230
+       },{
+           "x": 120, "y": 230
+       },{
+           "x": 20, "y": 120
+       }];
+
+    maineFacts.selectAll("polygon")
+    .data([maineHexagonPoints])
+  .enter().append("polygon")
+    .attr("points",function(d) {
+        return d.map(function(d) {
+            return [d.x,d.y].join(",");
+        }).join(" ");
+    })
+        .style("fill", "darkseagreen");
+
+    maineFacts.append("text")
+        .attr("dx", 105)
+        .attr("dy", 80)
+        .text("Maine")
+        .style("font-family", "Verdana");
+
+    maineFacts.append("text")
+        .attr("dx", 105)
+        .attr("dy", 105)
+        .text("Year of Admission: 1820")
+        .style("font-family", "Verdana");
+
+    maineFacts.append("text")
+        .attr("dx", 105)
+        .attr("dy", 130)
+        .text("Population: 1,336,000")
+        .style("font-family", "Verdana");
+
+    maineFacts.append("text")
+        .attr("dx", 105)
+        .attr("dy", 155)
+        .text("Size: 91,646 sqkm")
+        .style("font-family", "Verdana");
+
+    var massachusettsFacts = d3.select("body").append("svg")
+               .attr("x", 400)
+        .attr("height", 250)
+        .attr("width", 1000);
+
+    massachusettsFacts.append("rect")
+       .attr("x", 20)
+        .attr("y", 20)
+        .attr("width", 250)
+        .attr("height", 250)
+        .style("fill", "sandybrown");
+
+    massachusettsFacts.append("text")
+        .attr("dx", 45)
+        .attr("dy", 100)
+        .text("Massachusetts")
+        .style("font-family", "Verdana");
+
+    massachusettsFacts.append("text")
+        .attr("dx", 45)
+        .attr("dy", 125)
+        .text("Year of Admission: 1788")
+        .style("font-family", "Verdana");
+
+    massachusettsFacts.append("text")
+        .attr("dx", 45)
+        .attr("dy", 150)
+        .text("Population: 6,860,000")
+        .style("font-family", "Verdana");
+
+    massachusettsFacts.append("text")
+        .attr("dx", 45)
+        .attr("dy", 175)
+        .text("Size: 27,337 sqkm")
+        .style("font-family", "Verdana");
+
+    var connecticutFacts = d3.select("body").append("svg")
+               .attr("x", 400)
+        .attr("height", 325)
+        .attr("width", 1000);
+
+    connecticutFacts.append("circle")
+       .attr("cx", 170)
+        .attr("cy", 170)
+        .attr("r", 140)
+        .style("fill", "darkseagreen");
+
+    connecticutFacts.append("text")
+        .attr("dx", 65)
+        .attr("dy", 135)
+        .text("Connecticut")
+        .style("font-family", "Verdana");
+
+    connecticutFacts.append("text")
+        .attr("dx", 65)
+        .attr("dy", 160)
+        .text("Year of Admission: 1788")
+        .style("font-family", "Verdana");
+
+    connecticutFacts.append("text")
+        .attr("dx", 65)
+        .attr("dy", 185)
+        .text("Population: 3,588,000")
+        .style("font-family", "Verdana");
+
+    connecticutFacts.append("text")
+        .attr("dx", 65)
+        .attr("dy", 210)
+        .text("Size: 14357 sqkm")
+        .style("font-family", "Verdana");
+
+    var rhodeIslandFacts = d3.select("body").append("svg")
+               .attr("x", 400)
+        .attr("height", 200)
+        .attr("width", 1000);
+
+    rhodeIslandFacts.append("rect")
+       .attr("x", 20)
+        .attr("y", 20)
+        .attr("width", 150)
+        .attr("height", 110)
+        .style("fill", "gold");
+
+    rhodeIslandFacts.append("text")
+        .attr("dx", 30)
+        .attr("dy", 40)
+        .text("Rhode Island")
+        .style("font-family", "Verdana")
+        .style("font-size", "12px");
+
+    rhodeIslandFacts.append("text")
+        .attr("dx", 30)
+        .attr("dy", 65)
+        .text("YOA: 1790")
+        .style("font-family", "Verdana")
+        .style("font-size", "12px");
+
+    rhodeIslandFacts.append("text")
+        .attr("dx", 30)
+        .attr("dy", 90)
+        .text("Population: 1,060,000")
+        .style("font-family", "Verdana")
+        .style("font-size", "12px");
+
+    rhodeIslandFacts.append("text")
+        .attr("dx", 30)
+        .attr("dy", 115)
+        .text("Size: 3,144 sqkm")
+        .style("font-family", "Verdana")
+        .style("font-size", "12px");
+
+
+
+
+
+
+</script>
+</body>
